@@ -21,9 +21,11 @@ defmodule AlexandriaWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", AlexandriaWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", AlexandriaWeb do
+    pipe_through :api
+
+    resources "/books", BookController, except: [:new, :edit]
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:alexandria, :dev_routes) do
