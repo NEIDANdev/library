@@ -25,6 +25,7 @@ defmodule AlexandriaWeb.Router do
     pipe_through :api
 
     resources "/books", BookController, except: [:new, :edit]
+    resources "/genres", GenreController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
