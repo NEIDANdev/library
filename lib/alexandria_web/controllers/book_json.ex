@@ -19,7 +19,9 @@ defmodule AlexandriaWeb.BookJSON do
     %{
       id: book.id,
       title: book.title,
-      published_at: book.published_at
+      published_at: book.published_at,
+      #genre: AlexandriaWeb.GenreJSON.show(%{genre: book.genre})
+      genre: book.genre.name
     }
   end
 end

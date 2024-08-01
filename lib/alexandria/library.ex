@@ -6,6 +6,7 @@ defmodule Alexandria.Library do
   import Ecto.Query, warn: false
   alias Alexandria.Repo
 
+  # alias Alexandria.Category.Genre
   alias Alexandria.Library.Book
 
   @doc """
@@ -18,7 +19,12 @@ defmodule Alexandria.Library do
 
   """
   def list_books do
-    Repo.all(Book)
+    Repo.all(
+      from books in Book,
+      preload: [:genre],
+      order_by: [desc: books.published_at],
+      limit: ^15
+    )
   end
 
   @doc """

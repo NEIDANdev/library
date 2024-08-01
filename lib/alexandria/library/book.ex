@@ -5,6 +5,7 @@ defmodule Alexandria.Library.Book do
   schema "books" do
     field :title, :string
     field :published_at, :utc_datetime
+    belongs_to :genre, Alexandria.Category.Genre
 
     timestamps(type: :utc_datetime)
   end
@@ -12,7 +13,8 @@ defmodule Alexandria.Library.Book do
   @doc false
   def changeset(book, attrs) do
     book
-    |> cast(attrs, [:title, :published_at])
-    |> validate_required([:title, :published_at])
+    |> cast(attrs, [:title, :published_at, :genre_id])
+    |> validate_required([:title, :published_at, :genre_id])
+    |> assoc_constraint(:genre)
   end
 end

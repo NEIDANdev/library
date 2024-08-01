@@ -4,6 +4,7 @@ defmodule Alexandria.Category.Genre do
 
   schema "genres" do
     field :name, :string
+    has_many :books, Alexandria.Library.Book
 
     timestamps(type: :utc_datetime)
   end
